@@ -51,7 +51,7 @@ let endTime;
 var interval = setInterval(function() {
     if (isFail == true) return;
     if (isFinished == true) return;
-    if (isShiftPressed) {
+    if (isShiftPressed && !isXPressed) {
         speed += getSpeedIncrement(gear); // 속도를 기어에 따라 증가시킴
         if (speed >= 100 && isFinished == false) {
             endTime = new Date().getTime();
@@ -228,6 +228,10 @@ function updateGear() {
 
 function getSpeedIncrement(gear) {
     // 기어별 속도 변화량을 반환
+    if (isXPressed){
+        return 1/2;
+    }
+
     if (gear === 'N') {
         if (isShiftPressed){
             return speed < 10 ? 1 : speed < 15 ? 0.5 : 0;
