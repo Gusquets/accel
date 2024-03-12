@@ -7,15 +7,20 @@
 </head>
 <body>
 <h1>제로백 레이싱</h1>
+
 <p>Shift 키를 누르고 있으면 속도가 올라가고 때면 속도가 내려갑니다.</p>
 <p>X 키를 누른 상태에서 Z 키를 누르면 기어가 내려갑니다.</p>
 <p>X 키를 누른 상태에서 C 키를 누르면 기어가 올라갑니다.</p>
 <p>기어가 높을 수록 속도가 빠르게 올라갑니다</p>
+
+
 <p>현재 속도: <span id="speed">0</span> km/h</p>
 <p>현재 RPM: <span id="rpm">0</span></p>
 <p>현재 기어: <span id="gear">N</span></p>
 <p id="message">기어를 잘 변속해주세요</p>
 <button onclick="location.reload()">다시 시작</button>
+
+
 <p>100km/h 돌파까지 걸린 시간: <span id="time">-</span></p>
 
 <h3>모바일용 버튼</h3>
@@ -60,6 +65,7 @@ var interval = setInterval(function() {
             elapsedTime = Math.round(elapsedTime * 1000) / 1000; // 소수 셋째 자리에서 반올림
             document.getElementById("time").innerHTML = elapsedTime;
             isFinished = true;
+            afterSuccess();
         }
 
     } else {
@@ -237,6 +243,10 @@ function updateGear() {
 //         document.getElementById("time").innerText = elapsedTime.toFixed(1) + " 초";
 //     }
 // }
+
+function afterSuccess(){
+    alert('성공!');
+}
 
 function getSpeedIncrement(gear) {
     // 기어별 속도 변화량을 반환
