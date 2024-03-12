@@ -246,6 +246,7 @@ function getSpeedIncrement(gear) {
 
     if (gear === 'N') {
         if (isShiftPressed){
+            document.getElementById("message").innerText = "기어를 올려주세요!";
             return 0;
         }
         return 1;
