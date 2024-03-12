@@ -14,7 +14,7 @@
 <p>현재 RPM: <span id="rpm">0</span></p>
 <p>현재 기어: <span id="gear">N</span></p>
 <p id="message"></p>
-<!-- <button onclick="restartGame()">다시 시작</button> -->
+<button onclick="location.reload()">다시 시작</button>
 <p>100km/h 돌파까지 걸린 시간: <span id="time">-</span></p>
 
 
@@ -28,12 +28,14 @@ let isGearChanging = false;
 let isStarted = false;
 let isFinished = false;
 let isFirst = true;
+let isFail = false;
 let startTime;
 let endTime;
 
 
 
-setInterval(function() {
+var interval = setInterval(function() {
+    if (isFail == true) return;
     if (isShiftPressed) {
         speed += getSpeedIncrement(gear); // 속도를 기어에 따라 증가시킴
         if (speed >= 100 && isFinished == false) {
@@ -134,7 +136,9 @@ function checkGearChange() {
         document.getElementById("message").innerText = "기어 변속 성공!";
     } else {
         document.getElementById("message").innerText = "기어 변속 실패!";
-        // clearInterval(intervalId); // 게임 멈춤
+        isFail = true;
+        clearInterval(interval); // 게임 멈춤
+        interval = ''
         // document.querySelector("button").disabled = false;
     }
     setTimeout(function() {
@@ -145,12 +149,17 @@ function checkGearChange() {
 
 function restartGame() {
     speed = 0;
+    rpm = 0;
     gear = 'N';
+    isStarted = false;
+    isFinished = false;
+    isFirst = true;
+    isFail = false;
     updateSpeed();
     updateGear();
     document.getElementById("message").innerText = "";
     // document.querySelector("button").disabled = true; // 다시 시작 버튼 비활성화
-    startGame(); // 게임 재시작
+    // startGame(); // 게임 재시작
 }
 
 function updateSpeed() {
