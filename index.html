@@ -20,7 +20,7 @@
 
 <h3>모바일용 버튼</h3>
 <div style="text-align: right;">
-    <button ontouchstart="isShiftPressed=true" ontouchend="isShiftPressed=false" style="width: 90px; height: 30px;">엑셀</button>
+    <button ontouchstart="accelWithButton()" ontouchend="isShiftPressed=false" style="width: 90px; height: 30px;">엑셀</button>
 </div>
 
 <br/><br/><br/><br/>
@@ -114,6 +114,13 @@ function gearDownWithButton(){
     }
 }
 
+function accelWithButton(){
+    isShiftPressed = true;
+    if(isFirst == true) {
+        startTime = new Date().getTime();
+        isFirst = false;
+    }
+}
 
 function decelerateSlowly() {
     if (speed > 0) {
