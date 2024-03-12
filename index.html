@@ -14,7 +14,7 @@
 <p>현재 속도: <span id="speed">0</span> km/h</p>
 <p>현재 RPM: <span id="rpm">0</span></p>
 <p>현재 기어: <span id="gear">N</span></p>
-<p id="message"></p>
+<p id="message">기어를 잘 변속해주세요</p>
 <button onclick="location.reload()">다시 시작</button>
 <p>100km/h 돌파까지 걸린 시간: <span id="time">-</span></p>
 
@@ -48,7 +48,6 @@ let startTime;
 let endTime;
 
 
-
 var interval = setInterval(function() {
     if (isFail == true) return;
     if (isFinished == true) return;
@@ -72,6 +71,11 @@ var interval = setInterval(function() {
     updateSpeed();
     updateRPM();
 }, 100); // 0.2초마다 실행
+
+document.oncontextmenu = function(event){
+    event.preventDefault();
+    return false;
+}
 
 document.addEventListener('keydown', function(event) {
     if (isGearChanging) return; // 변속 중일 때는 키 입력 무시
@@ -175,7 +179,7 @@ function checkGearChange() {
     }
     setTimeout(function() {
         isGearChanging = false; // 변속 완료 후 상태를 변속 중이 아닌 상태로 설정
-        document.getElementById("message").innerText = ""; // 메시지 초기화
+        // document.getElementById("message").innerText = ""; // 메시지 초기화
     }, 1000); // 1초 후 실행
 }
 
