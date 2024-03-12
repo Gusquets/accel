@@ -252,26 +252,26 @@ function getSpeedIncrement(gear) {
         return 1;
     } else if (gear === '1') {
         if (isShiftPressed){
-            return speed < 25 ? 2 : speed < 35 ? 0.5 : 0.05;
+            return speed < 25 ? 1 : speed < 35 ? 0.5 : 0.05;
         }
         return 2;
     } else if (gear === '2') {
         if (isShiftPressed){
-            return speed < 45 ? 3 : speed < 55 ? 0.5 : 0.05;
+            return speed < 45 ? 1.5 : speed < 55 ? 0.5 : 0.05;
         }
         return 3;
     } else if (gear === '3') {
         if (isShiftPressed){
-            return speed < 65 ? 4 : speed < 75 ? 0.5 : 0.05;
+            return speed < 65 ? 2 : speed < 75 ? 0.5 : 0.05;
         }
         return 4;
     } else if (gear === '4') {
         if (isShiftPressed){
-            return speed < 85 ? 5 : speed < 95 ? 0.5 : 0.05;
+            return speed < 85 ? 2.5 : speed < 95 ? 0.5 : 0.05;
         }
         return 5;
     } else if (gear === '5') {
-        return 6;
+        return 3;
     }
 }
 
